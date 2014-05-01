@@ -164,6 +164,8 @@ echo -e "- oclHashCat"
 sleep 1
 echo -e "whitechapel (front end) - https://github.com/mubix/WhiteChapel"
 sleep 1
+echo -e "http://lockfale.com/sorted.zip - Epic Wordlist"
+sleep 1
 echo -e ""
 	echo "1.  Return to main menu"
 	echo
