@@ -25,7 +25,7 @@ f_checkexit(){
 }
 
 f_Quit(){
-	echo -e "\n\n\e[1;33m[*] Please standby while we clean up your mess...\e[0m\n"
+	echo -e "\n\n\e[1;33m[*] This presentation is available at github.com/lockfale/pAsscrack.sh \e[0m\n"
 	sleep 3
 }
 
@@ -53,7 +53,6 @@ fi
 
 f_hashes(){
 clear
-f_Banner3
 
 echo "1.  what is a hash?"
 echo "2.  give me some examples?"
@@ -134,9 +133,17 @@ echo "2.  Return to main menu"
 #
 ##################################################
 
+f_showcrack(){
+clear 
+echo -e "########################################################"
+john --show hashes.txt
+sleep 5
+f_mainmenu
+}
+
 f_spawnterm(){
 clear
-gnome-terminal
+gnome-terminal -x ./autocrack.sh
 sleep 2
 f_mainmenu
 }
@@ -162,9 +169,7 @@ echo -e "- John the Ripper"
 sleep 1
 echo -e "- oclHashCat"
 sleep 1
-echo -e "whitechapel (front end) - https://github.com/mubix/WhiteChapel"
-sleep 1
-echo -e "http://lockfale.com/sorted.zip - Epic Wordlist"
+echo -e "- whitechapel (front end) - https://github.com/mubix/WhiteChapel"
 sleep 1
 echo -e ""
 	echo "1.  Return to main menu"
@@ -184,20 +189,19 @@ f_hashidentification(){
 	clear
 	echo -e "manual ID: "
 	echo -e "--- character sets and length"
+	sleep 5
 	echo -e "---- http://en.wikipedia.org/wiki/Cryptographic_hash_function#Cryptographic_hash_algorithms"
+	echo ""
 	sleep 5
 	echo -e "automated ID: "
-	echo ""
 	sleep 2
 	echo -e "---- https://github.com/SmeegeSec/HashTag"
-	sleep 1
-	echo ""
+	sleep 5
 	echo -e "---- https://code.google.com/p/hash-identifier/"
-	sleep 1
-	echo ""
+	sleep 5
 	echo -e "---- jtr"
 	echo ""
-	sleep 2
+	sleep 5
 	echo "1.  Return to menu"
 	echo
 	read -p "Choice: " mainchoice
@@ -294,21 +298,24 @@ f_ourdrink
 
 f_ourdrink(){
 clear
-                                                                                               
-echo -e "		@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@   @@@@@@@   @@@       @@@@@@@@  @@@@@@@@  @@@@@@@   "
-echo -e "		@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@       @@@@@@@@  @@@@@@@@  @@@@@@@@  "
-echo -e "		@@!       @@!  @@!  @@@  @@!       @@!  @@@  @@!  @@@  @@!       @@!       @@!       @@!  @@@  "
-echo -e "		!@!       !@!  !@!  @!@  !@!       !@!  @!@  !@   @!@  !@!       !@!       !@!       !@!  @!@  "
-echo -e "		@!!       !!@  @!@  !@!  @!!!:!    @!@!!@!   @!@!@!@   @!!       @!!!:!    @!!!:!    @!@  !@!  "
-echo -e "		!!!       !!!  !@!  !!!  !!!!!:    !!@!@!    !!!@!!!!  !!!       !!!!!:    !!!!!:    !@!  !!!  "
-echo -e "		!!:       !!:  :!:  !!:  !!:       !!: :!!   !!:  !!!  !!:       !!:       !!:       !!:  !!!  "
-echo -e "		:!:      :!:   ::!!:!   :!:       :!:  !:!  :!:  !:!   :!:      :!:       :!:       :!:  !:!   "
-echo -e "		:: ::::   ::    ::::     :: ::::  ::   :::   :: ::::   :: ::::   :: ::::   :: ::::   :::: ::   "
-echo -e "		: :: : :  :       :      : :: ::    :   : :  :: : ::   : :: : :  : :: ::   : :: ::   :: :  :   "
-echo -e ""
-echo -e ""
+echo -e "##############################################################################################################"
+echo -e "##############################################################################################################"
 echo ""
-echo " Liverbleed:"
+echo -e "	@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@   @@@@@@@   @@@       @@@@@@@@  @@@@@@@@  @@@@@@@   "
+echo -e "	@@@       @@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@@  @@@       @@@@@@@@  @@@@@@@@  @@@@@@@@  "
+echo -e "	@@!       @@!  @@!  @@@  @@!       @@!  @@@  @@!  @@@  @@!       @@!       @@!       @@!  @@@  "
+echo -e "	!@!       !@!  !@!  @!@  !@!       !@!  @!@  !@   @!@  !@!       !@!       !@!       !@!  @!@  "
+echo -e "	@!!       !!@  @!@  !@!  @!!!:!    @!@!!@!   @!@!@!@   @!!       @!!!:!    @!!!:!    @!@  !@!  "
+echo -e "	!!!       !!!  !@!  !!!  !!!!!:    !!@!@!    !!!@!!!!  !!!       !!!!!:    !!!!!:    !@!  !!!  "
+echo -e "	!!:       !!:  :!:  !!:  !!:       !!: :!!   !!:  !!!  !!:       !!:       !!:       !!:  !!!  "
+echo -e "	:!:      :!:   ::!!:!   :!:       :!:  !:!  :!:  !:!   :!:      :!:       :!:       :!:  !:!   "
+echo -e "	:: ::::   ::    ::::     :: ::::  ::   :::   :: ::::   :: ::::   :: ::::   :: ::::   :::: ::   "
+echo -e "	: :: : :  :       :      : :: ::    :   : :  :: : ::   : :: : :  : :: ::   : :: ::   :: :  :   "
+echo -e ""
+echo -e "###############################################################################################################"
+echo -e "###############################################################################################################"
+echo " LiverBleed:"
+echo ""
 echo " 1 Part Sailor Jerry Rum"
 echo " 1 Part Woodchuck Cider"
 
