@@ -479,7 +479,8 @@ echo -e "#can do whatever you want with this stuff. Unless you are Dennis Kuntz.
 echo -e "#Under no circumstances shall Dennis Kuntz be granted use of this software,                                      	"
 echo -e "#source code, documentation, or other related material.                                                           	"
 echo -e "#Persons dealing in the Software agree not to knowingly distribute these materials                               	"
-echo -e "#or any derivative works to Dennis Kuntz. *                                                                      	"
+echo -e "#or any derivative works to Dennis Kuntz. * "
+echo -e "# also scotty pls bring bananas or you will be banned."
 echo -e "##################################################################################################################"
 }
 
