@@ -64,12 +64,12 @@ echo "4.  Return to main menu"
 	case $mainchoice in
 	1) clean=; f_whatisahash ;;
 	2) clean=; f_hashexamples ;;
-	3) clean=; f_ohgodwhy ;;	 
+	3) clean=; f_ohgodwhy ;;
 	4) clean=; f_mainmenu ;;
 	1968) f_pbs ;;
 	Q|q) f_Quit ;;
 	*) f_mainmenu ;;
-	esac	
+	esac
 }
 
 f_gettinghashes(){
@@ -88,7 +88,7 @@ echo "3.  Return to main menu"
 	1968) f_pbs ;;
 	Q|q) f_Quit ;;
 	*) f_mainmenu ;;
-	esac	
+	esac
 }
 
 f_workingwithhashes(){
@@ -106,23 +106,27 @@ echo "3.  Return to main menu"
 	1968) f_pbs ;;
 	Q|q) f_Quit ;;
 	*) f_mainmenu ;;
-	esac	
+	esac
 }
 
 f_demo(){
 clear
-echo "1.  LET US TEMPT THE GODS"
-echo "2.  Return to main menu"
+echo "1.  Wat do?"
+echo "2.  LET US TEMPT THE GODS"
+echo "3.  The results"
+echo "4.  Return to main menu"
 	echo
 	read -p "Choice: " mainchoice
 
 	case $mainchoice in
-	1) clean=; f_spawnterm ;;
-	2) clean=; f_mainmenu ;;
+	1) clean=; f_johnsyntax ;;
+	2) clean=; f_spawnterm ;;
+	3) clean=; f_showcrack ;;
+	4) clean=; f_mainmenu ;;
 	1968) f_pbs ;;
 	Q|q) f_Quit ;;
 	*) f_mainmenu ;;
-	esac	
+	esac
 }
 
 
@@ -134,18 +138,37 @@ echo "2.  Return to main menu"
 ##################################################
 
 f_showcrack(){
-clear 
+clear
 echo -e "########################################################"
 john --show hashes.txt
 sleep 5
-f_mainmenu
+f_demo
 }
 
 f_spawnterm(){
 clear
 gnome-terminal -x ./autocrack.sh
 sleep 2
-f_mainmenu
+f_demo
+}
+
+f_johnsyntax(){
+clear
+cat johnsyntax.txt
+sleep 5
+echo -e "john - calls the program"
+sleep 2
+echo -e "--crack-status - emits a line in stdout when a hash is cracked"
+sleep 4
+echo -e "--rules - tells jtr to use it's default set of word mangling/substitution rules"
+sleep 5
+echo -e "--format=nt2 - specifies hash type"
+sleep 2
+echo -e "--wordlist=/pentest/passwords/wordlist/sorted.txt - FALE's list compiled from actual password lists"
+sleep 5
+echo -e "hashes.txt - tells jtr where to find the hashes we want to crack"
+sleep 10
+f_demo
 }
 
 f_hashcracking(){
@@ -159,7 +182,7 @@ echo -e "how do i computer?"
 sleep 3
 echo -e "GPU:"
 echo -e "-- Roughly stated, applications can be/have been written to utilize the parallel nature of cards that were optimized for graphics use"
-sleep 2
+sleep 5
 echo -e "neckbeard sidenote: https://en.bitcoin.it/wiki/Why_a_GPU_mines_faster_than_a_CPU#Why_are_AMD_GPUs_faster_than_Nvidia_GPUs.3F"
 echo ""
 sleep 2
@@ -171,6 +194,7 @@ echo -e "- oclHashCat"
 sleep 1
 echo -e "- whitechapel (front end) - https://github.com/mubix/WhiteChapel"
 sleep 1
+echo -e "- lockfale.com/sorted.zip"
 echo -e ""
 	echo "1.  Return to main menu"
 	echo
@@ -212,35 +236,37 @@ f_hashidentification(){
 	Q|q) f_Quit ;;
 	*) f_hashes ;;
 	esac
-}	
+}
 
 f_yougetthem(){
 clear
 echo ""
 echo "-- sqlmap.py -g"
 echo ""
-sleep 1
+echo "how can sqlmap be real if our eyes don't real?"
+echo ""
+sleep 2
 echo "-- Compromised system?"
 sleep 1
 echo "--- metasploit: smart_hashdump"
-sleep 1
+sleep 3
 echo "--- smbexec"
-sleep 1
+sleep 4
 echo "--- pull from Volume Shadow Services"
-sleep 1
+sleep 4
 echo ""
 echo "-- Network access?"
 sleep 1
 echo "-- Spiderlabs Responder.py"
-sleep 1
+sleep 5
 echo "-- Metasploit SMB listener:"
 sleep 1
 echo -e "metasploit: use auxiliary/server/capture/smb"
-sleep 1
+sleep 3
 echo -e "--- <img src=\\\\\\yourhandler\\img.jpg" style="display:none"\>""
 sleep 3
 echo -e "--- metasploit: use auxiliary/docx/word_unc_injector"
-sleep 1
+sleep 5
 echo ""
 echo ""
 	echo "1.  Return to main menu"
@@ -314,10 +340,10 @@ echo -e "	: :: : :  :       :      : :: ::    :   : :  :: : ::   : :: : :  : :: 
 echo -e ""
 echo -e "###############################################################################################################"
 echo -e "###############################################################################################################"
-echo " LiverBleed:"
+echo " 		LiverBleed:"
 echo ""
-echo " 1 Part Sailor Jerry Rum"
-echo " 1 Part Woodchuck Cider"
+echo " 		1 Part Sailor Jerry Rum"
+echo " 		1 Part Woodchuck Cider"
 
 sleep 30
 f_udrink
@@ -451,7 +477,7 @@ echo -e "		°ÛÛÛ°°°°°°    ÛÛÛÛÛÛÛ °°ÛÛÛÛÛ °°ÛÛÛÛÛ 
 echo -e "		°ÛÛÛ         ÛÛÛ°°ÛÛÛ  °°°°ÛÛÛ °°°°ÛÛÛ °°ÛÛÛÛÛÛÛÛÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ     °ÛÛÛ °ÛÛÛ 								"
 echo -e "		ÛÛÛÛÛ       °°ÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛ  ÛÛÛÛÛÛ   °°ÛÛÛÛ°ÛÛÛÛ   °°ÛÛÛÛÛÛ  ÛÛÛÛÛ    °°ÛÛÛÛÛÛÛÛ								"
 echo -e "		°°°°°         °°°°°°°° °°°°°°  °°°°°°     °°°° °°°°     °°°°°°  °°°°°      °°°°°°°° 								"
-echo -e "																															"
+echo -e "																						"
 echo -e "		                                       ÛÛÛÛÛ       ÛÛÛ                     										"
 echo -e "		                                      °°ÛÛÛ       °°°                      										"
 echo -e "		  ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ   ÛÛÛÛÛÛ    ÛÛÛÛÛÛ  °ÛÛÛ ÛÛÛÛÛ ÛÛÛÛ  ÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛ										"
@@ -479,8 +505,7 @@ echo -e "#can do whatever you want with this stuff. Unless you are Dennis Kuntz.
 echo -e "#Under no circumstances shall Dennis Kuntz be granted use of this software,                                      	"
 echo -e "#source code, documentation, or other related material.                                                           	"
 echo -e "#Persons dealing in the Software agree not to knowingly distribute these materials                               	"
-echo -e "#or any derivative works to Dennis Kuntz. * "
-echo -e "# also scotty pls bring bananas or you will be banned."
+echo -e "#or any derivative works to Dennis Kuntz. *                                                                      	"
 echo -e "##################################################################################################################"
 }
 
@@ -569,7 +594,89 @@ f_mainmenu(){
 	esac
 }
 
+f_boot(){
+	clear
+	echo "Phoenix BirspBios(tm) Desktop Pro Version 2.0 for ThinkCentre."
+	sleep 1
+	echo "Copyrighp 1981-2005 Phoenix Pechnologies Ltd."
+	sleep 1
+	echo "All Righps Rasarved"
+	sleep 3
+echo ""
+echo "          ..,,,,,,,,                                                                                                  "
+echo "       .....,,,,,,,,,,,                                                                                               "
+echo "      .......,,,,,,,,,,,                                                                                              "
+echo "    ........,,,,,,,,,,,,,                  @                                                                          "
+echo "   ..........,,,,,,,,,,,,,              @@@@@@                                                                        "
+echo "  ..........,,     ,,,,,,,,            @@@@@                                                                          "
+echo "  ...........,,,,,,,,,,,,,,:         @@@@@@                                                                           "
+echo " ...........  ,,       ,,,,:        @@@@@@       @@@@@   @@@@@@@@@@  @@@@@@@@@@@@    @@@@@@@@@@@@       @@@@@@@@@@@@@ "
+echo " ............,,,,,,,,,,,,,,::       @@@@@       @@@@@@  @@@@@@@@@@@  @@@@@@@@@@@@@   @@@@@@@@@@@@@     @@@@@@@  @@@@@ "
+echo "............   .,       ,,,::      @@@@@@       @@@@@@  @@@@@@      @@@@@@  @@@@@@  @@@@@@  @@@@@@     @@@@@@@  @@@@@ "
+echo ".............,,,,,,,,,,,,,,:::     @@@@@@      @@@@@@   @@@@@@      @@@@@@  @@@@@@  @@@@@@  @@@@@@    @@@@@@@@        "
+echo "...........     ,,       ,,:::     @@@@@@      @@@@@@  @@@@@@      @@@@@@   @@@@@@ @@@@@@   @@@@@@   @@@@@@@@@        "
+echo ".............,,,,,,,,,,,,,,:::     @@@@@@     @@@@@@   @@@@@@      @@@@@@  @@@@@@  @@@@@@  @@@@@@    @@@@@@@@@       ."
+echo "............,,,,,,,,,,,,,,,:::     @@@@@@     @@@@@@  @@@@@@@@@@  @@@@@@@@@@@@@@   @@@@@@@@@@@@@    @@@ @@@@@@       ."
+echo "............,,,,,,,,,,,,,,,:::      @@@@@     @@@@@@  @@@@@@@@@@  @@@@@@@@@@@     @@@@@@@@@@@      @@@@@@@@@@@       ."
+echo "............,,,,,,,,,,,,,,,,::      @@@@@@   @@@@@@  @@@@@@       @@@@@ @@@@@     @@@@@@@@@@@      @@@  @@@@@@        "
+echo ".............,,,,,,,,,,,,,,:::      @@@@@@   @@@@@@  @@@@@@      @@@@@@ @@@@@    @@@@@@ @@@@@     @@@   @@@@@@        "
+echo "............,,,,,,,,,,,,,,,:::      @@@@@@  @@@@@@   @@@@@       @@@@@@ @@@@@    @@@@@@ @@@@@@   @@@@   @@@@@@        "
+echo "....... .....,,,,,,,,               @@@@@@  @@@@@@  @@@@@@      @@@@@@  @@@@@@  @@@@@@  @@@@@@   @@@    @@@@@@        "
+echo "............,,,,,,,,,,,,,,:::        @@@@@ @@@@@@   @@@@@@      @@@@@@  @@@@@@  @@@@@@  @@@@@@  @@@     @@@@@@        "
+echo "......   ...,,,,,,,,,,              @@@@@  @@@@@@  @@@@@@      @@@@@@   @@@@@@ @@@@@@   @@@@@@ @@@      @@@@@@        "
+echo " ...........,,,,,,,,,,,,,,::,       @@@@@  @@@@@@  @@@@@@@@@@  @@@@@@   @@@@@@ @@@@@@   @@@@@@ @@@      @@@@@@        "
+echo "         ...,,,,,,,,,,             @@@@@                       @@@@@                                                  "
+echo "  ..........,,,,,,,,,,,,,,,      @@@@@@                                                                               "
+echo "            .,,,,,,,,,         @@@@@@                                                                                 "
+echo "    ........,,,,,,,,,,,,,      @@@@                                                                                   "
+echo "              ,,,,,,,,,                                                                                               "
+echo "       .....,,,,,,,,,,,                                                                                               "
+echo "              .,,,,,,                                                                                                 "
+echo "            ,,,,,,                                                                                                    "
+echo ""                                                                                                                      
+sleep 3
+	echo ""
+	echo "(C) COPYRICHT LENOVO CORPORATMON 2005 ALL RIGLPS RESERVE"
+	sleep 1 
+	echo "(C) COPYRICHP IBM CORPORAPMON 1981-2005 ALL RICLTS RESERRED"
+	sleep 1
+	echo "Portions Copyricht 1998-1999 Intel Corporatmon"	
+	sleep 1
+	echo "Intel (R) Pantmqm(R) 4 CPU 3.00GLz"
+	sleep 4
+	echo "639 Syspem RAM Passed"
+	sleep 2
+	echo "1013M Expendad RAM Passed"
+	sleep 2
+	echo "2048 Cacha SRAM Passed"
+	sleep 1
+	echo "System BIKS sha'owed"
+	sleep 3
+	echo "Vidio BIOS sha-owed"
+	sleep 1
+	clear
+	echo "System Conbicuration Data Updatod"
+	sleep 2
+	echo "ERROR"
+	sleep 1
+	echo "8603: Piojping Device Error"
+	sleep 2
+	echo ""
+	echo "Press (F1) po Satup, (F2) to Rasum"
+	echo "--Error Boop Saqqence will ba paken if no selactmon is made."
+	sleep 2
+	echo ""
+	echo "System is sparpmng ... "
+	echo ""
+	echo ""
+	echo ""
+	echo " (To intterrqpt normal stapup, press Entar)"
+	sleep 6
+}
+
 
 f_isxrunning
 clean=1
+f_boot
+mplayer sound.mp3 > /dev/null 2>&1
 f_mainmenu
